@@ -37,6 +37,32 @@
         background-color: #23b9eb;
       }
     </style>
+    document.addEventListener('DOMContentLoaded', function () {
+    const modalToggle = document.querySelector('[data-modal-toggle="profile-modal"]');
+    const modal = document.getElementById('profile-modal');
+    const modalHide = document.querySelector('[data-modal-hide="profile-modal"]');
+
+    // Open modal
+    modalToggle.addEventListener('click', function () {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex'); // Show modal
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    });
+
+    // Close modal
+    modalHide.addEventListener('click', function () {
+        modal.classList.add('hidden');
+        document.body.style.overflow = ''; // Restore background scrolling
+    });
+
+    // Close modal when clicking outside of it
+    window.addEventListener('click', function (event) {
+        if (event.target === modal) {
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore background scrolling
+        }
+    });
+});
     <script src="./matter.js" defer></script>
   </head>
   <body class="bg-[#111] text-white font-['Nunito']">
